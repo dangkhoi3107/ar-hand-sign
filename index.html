@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hand Sign Recognition</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main id="app">
+      <div id="video-container">
+        <video id="webcam" autoplay playsinline></video>
+        <canvas id="draw-canvas"></canvas>
+
+        <div id="prediction-container">
+          <span id="big-prediction-label">WAITING...</span>
+          <div id="conf-bar-bg"><div id="conf-bar-fill"></div></div>
+        </div>
+
+        <div id="controls-overlay">
+          <label class="toggle-switch">
+            <input type="checkbox" id="chk-show-landmarks">
+            <span class="slider"></span>
+            <span class="label-text">Show Skeleton</span>
+          </label>
+        </div>
+
+        <div id="status-overlay">
+          <span id="fps-label">FPS: --</span>
+        </div>
+
+        <div id="error-overlay" hidden></div>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+    <script src="./main.js"></script>
+  </body>
+</html>

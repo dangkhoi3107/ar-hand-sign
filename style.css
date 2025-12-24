@@ -1,0 +1,150 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background: #111;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: #fff;
+  overflow: hidden;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+}
+
+#video-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 1280px; /* Giới hạn khung hình để không bị quá to trên màn rộng */
+  aspect-ratio: 16/9;
+  background: #000;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+#webcam {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Sửa từ 'cover' thành 'contain' để ko bị lệch tọa độ */
+  transform: scaleX(-1); /* Lật gương video */
+}
+
+
+#draw-canvas {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Khớp với video */
+  transform: scaleX(-1); /* QUAN TRỌNG: Lật canvas theo video */
+  pointer-events: none;
+}
+
+/* --- BIG PREDICTION LABEL --- */
+#prediction-container {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  z-index: 10;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+
+#big-prediction-label {
+  font-size: 3.5rem; /* Chữ rất to */
+  font-weight: 800;
+  color: #00ffcc;
+  text-transform: uppercase;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 5px 20px;
+  border-radius: 8px;
+  letter-spacing: 2px;
+}
+
+#conf-bar-bg {
+  width: 200px;
+  height: 6px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+#conf-bar-fill {
+  width: 0%;
+  height: 100%;
+  background: #00ffcc;
+  transition: width 0.1s ease;
+}
+
+/* --- CONTROLS --- */
+#controls-overlay {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 10px;
+  border-radius: 8px;
+  z-index: 20;
+}
+
+.toggle-switch {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.toggle-switch input {
+  display: none;
+}
+
+.label-text {
+  color: #fff;
+  font-weight: 600;
+}
+
+/* --- BOTTOM STATUS --- */
+#status-overlay {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  background: rgba(0,0,0,0.5);
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: #aaa;
+}
+
+#error-overlay {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 0, 0, 0.8);
+  padding: 20px;
+  border-radius: 8px;
+  color: white;
+  text-align: center;
+}
